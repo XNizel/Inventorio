@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('liste/', views.liste),
+    path('liste/<int:id>/', views.conteneur_detail, name='conteneur-detail')
 
 ]

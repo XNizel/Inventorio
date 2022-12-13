@@ -1,6 +1,6 @@
 <li>
-    {{ conteneurs.name }}
-    {% if conteneurs.child.all %}
+    <a href="{% url 'conteneur-detail' conteneurs.id %}">{{ conteneurs.name }}</a>
+    {% if conteneurs.get_child %}
         <ul>
             {% for child in conteneurs.get_child %}
                 {% with conteneurs=child template_name='liste/tree_view.html' %}
