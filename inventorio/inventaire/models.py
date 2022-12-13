@@ -4,6 +4,12 @@ from django.db import models
 # Create your models here.
 class Categorie(models.Model):
     name = models.fields.CharField(max_length=100)
+    description = models.CharField(max_length=300,
+                                   null=True,
+                                   blank=True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Conteneur(models.Model):
@@ -30,7 +36,6 @@ class Conteneur(models.Model):
         if self.get_child():
             for child in self.get_child():
                 print(child)
-
 
     def __str__(self):
         return f'{self.name}'

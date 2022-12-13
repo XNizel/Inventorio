@@ -1,20 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from inventaire.models import Conteneur
 from inventaire.models import Categorie
 
+from inventaire.forms import CategorieForm
+
 
 # Create your views here.
 
 def liste(request):
-    # conteneurs = Conteneur.objects.all()
     conteneurs = Conteneur.objects.all()
     conteneurs = conteneurs[0]  # root
-
-    #print(conteneurs)
-    #conteneurs.get_child_recursively()
-
     return render(request,
                   'liste/liste.html',
                   {'conteneurs': conteneurs})
@@ -33,3 +30,17 @@ def categorie_list(request):
     return render(request,
                   'categorie/categorie.html',
                   {'categories': categories})
+
+
+def categorie_add(request):
+    if request.method == 'POST':
+        form = CategorieForm(request.POST)
+        if form.is_valid():
+            categorie = form.save()     # Créer une nouvelle "Catégorie" et la sauvegarder dans la base de données
+            return redirect('categorie-list')
+    else:
+        form = CategorieForm()
+
+    return render(request,
+                  'categorie/categorie_add.html',
+                  {'form': form})

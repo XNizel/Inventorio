@@ -23,6 +23,7 @@ urlpatterns = [
     path('liste/', views.liste, name='liste-tree'),
     path('liste/<int:id>/', views.conteneur_detail, name='conteneur-detail'),
 
-    path('categorie/', views.categorie_list, name='categorie-list')
+    path('categorie/', views.categorie_list, name='categorie-list'),
+    path('categorie/add/', views.categorie_add, name='categorie-add')
 
 ]

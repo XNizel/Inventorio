@@ -3,6 +3,9 @@
 {% block content %}
 
     <h1>Catégorie</h1>
+
+    <a href="{% url 'categorie-add' %}">Créer une nouvelle catégorie</a>
+
     <Ul>
         {% for categorie in categories %}
             <li>{{ categorie }}</li>
