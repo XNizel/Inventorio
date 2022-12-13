@@ -24,6 +24,8 @@ urlpatterns = [
     path('liste/<int:id>/', views.conteneur_detail, name='conteneur-detail'),
 
     path('categorie/', views.categorie_list, name='categorie-list'),
-    path('categorie/add/', views.categorie_add, name='categorie-add')
+    path('categorie/<int:id>', views.categorie_detail, name='categorie-detail'),
+    path('categorie/add/', views.categorie_add, name='categorie-add'),
+    path('categorie/<int:id>/update', views.categorie_update, name='categorie-update')
 
 ]

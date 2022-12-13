@@ -32,15 +32,30 @@ def categorie_list(request):
                   {'categories': categories})
 
 
+def categorie_detail(request, id):
+    categorie = Categorie.objects.get(id=id)
+    return render(request,
+                  'categorie/categorie_detail.html',
+                  {'categorie': categorie})
+
+
 def categorie_add(request):
     if request.method == 'POST':
         form = CategorieForm(request.POST)
         if form.is_valid():
             categorie = form.save()     # Créer une nouvelle "Catégorie" et la sauvegarder dans la base de données
-            return redirect('categorie-list')
+            return redirect('categorie-detail', categorie.id)
     else:
         form = CategorieForm()
 
     return render(request,
                   'categorie/categorie_add.html',
+                  {'form': form})
+
+
+def categorie_update(request, id):
+    categorie = Categorie.objects.get(id=id)
+    form = CategorieForm(instance=categorie)
+    return render(request,
+                  'categorie/categorie_update.html',
                   {'form': form})
