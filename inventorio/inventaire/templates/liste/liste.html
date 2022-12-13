@@ -4,4 +4,10 @@
 
 <h1>Liste</h1>
 
+<ul>
+    {% for conteneur in conteneurs %}
+        <li>{{ conteneur.name }}</li>
+    {% endfor %}
+</ul>
+
 {% endblock %}
