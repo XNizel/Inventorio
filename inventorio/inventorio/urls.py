@@ -20,7 +20,7 @@ from inventaire import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('liste/', views.liste),
+    path('liste/', views.liste, name='liste-tree'),
     path('liste/<int:id>/', views.conteneur_detail, name='conteneur-detail')
 
 ]
