@@ -4,10 +4,13 @@
 
 <h1>Liste</h1>
 
+<h2>{{ conteneurs.name }}</h2>
+
 <ul>
-    {% for conteneur in conteneurs %}
-        <li>{{ conteneur.name }}</li>
-    {% endfor %}
+    {% if conteneurs.get_child %}
+        {% include 'liste/tree_view.html' %}
+    {% endif %}
 </ul>
+
 
 {% endblock %}
