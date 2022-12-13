@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from inventaire.models import Conteneur
+from inventaire.models import Categorie
 
 
 # Create your views here.
@@ -25,3 +26,10 @@ def conteneur_detail(request, id):
     return render(request,
                   'liste/conteneur_detail.html',
                   {'conteneur': conteneur})
+
+
+def categorie_list(request):
+    categories = Categorie.objects.all()
+    return render(request,
+                  'categorie/categorie.html',
+                  {'categories': categories})
