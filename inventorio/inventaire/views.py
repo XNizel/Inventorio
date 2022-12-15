@@ -43,7 +43,7 @@ def categorie_add(request):
     if request.method == 'POST':
         form = CategorieForm(request.POST)
         if form.is_valid():
-            categorie = form.save()     # Créer une nouvelle "Catégorie" et la sauvegarder dans la base de données
+            categorie = form.save()
             return redirect('categorie-detail', categorie.id)
     else:
         form = CategorieForm()

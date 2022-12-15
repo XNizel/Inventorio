@@ -4,6 +4,12 @@
 
     <h1>Detail de la catégorie {{ categorie.name }}</h1>
 
+    <ul>
+        <li>ID: {{ categorie.id }}</li>
+        <li>Nom: {{ categorie.name }}</li>
+        <li>Description: {{ categorie.description }}</li>
+    </ul>
 
+    <a href="{% url 'categorie-update' categorie.id %}">Modifier la catégorie</a>
 
 {% endblock %}

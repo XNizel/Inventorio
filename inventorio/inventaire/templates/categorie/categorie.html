@@ -8,7 +8,7 @@
 
     <Ul>
         {% for categorie in categories %}
-            <li>{{ categorie }}</li>
+            <li><a href="{% url 'categorie-detail' categorie.id %}">{{ categorie.name }}</a></li>
         {% endfor %}
     </Ul>
 
