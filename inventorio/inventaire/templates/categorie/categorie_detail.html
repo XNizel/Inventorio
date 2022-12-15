@@ -10,6 +10,8 @@
         <li>Description: {{ categorie.description }}</li>
     </ul>
 
+    <a href="{% url 'categorie-list' %}">Retour a la liste de catégories</a>
     <a href="{% url 'categorie-update' categorie.id %}">Modifier la catégorie</a>
+    <a href="{% url 'categorie-delete' categorie.id %}">Supprimer la catégorie</a>
 
 {% endblock %}

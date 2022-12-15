@@ -59,3 +59,15 @@ def categorie_update(request, id):
     return render(request,
                   'categorie/categorie_update.html',
                   {'form': form})
+
+
+def categorie_delete(request, id):
+    categorie = Categorie.objects.get(id=id)
+
+    if request.method == 'POST':
+        categorie.delete()
+        return redirect('categorie-list')
+
+    return render(request,
+                  'categorie/categorie_delete.html',
+                  {'categorie': categorie})
