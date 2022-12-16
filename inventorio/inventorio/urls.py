@@ -22,6 +22,9 @@ urlpatterns = [
 
     path('liste/', views.liste, name='liste-tree'),
     path('liste/<int:id>/', views.conteneur_detail, name='conteneur-detail'),
+    path('liste/add', views.conteneur_add, name='conteneur-add'),
+    path('liste/<int:id>/update', views.conteneur_update, name='conteneur-update'),
+    path('liste/<int:id>/delete', views.conteneur_delete, name='conteneur-delete'),
 
     path('categorie/', views.categorie_list, name='categorie-list'),
     path('categorie/<int:id>', views.categorie_detail, name='categorie-detail'),

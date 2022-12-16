@@ -1,13 +1,12 @@
 <li>
-    <a href="{% url 'conteneur-detail' conteneurs.id %}">{{ conteneurs.name }}</a>
-    {% if conteneurs.get_child %}
+    <a href="{% url 'conteneur-detail' conteneur.id %}">{{ conteneur.name }}</a>
+    {% if conteneur.get_child %}
         <ul>
-            {% for child in conteneurs.get_child %}
-                {% with conteneurs=child template_name='liste/tree_view.html' %}
+            {% for child in conteneur.get_child %}
+                {% with conteneur=child template_name='liste/tree_view.html' %}
                     {% include template_name %}
                 {% endwith %}
             {% endfor %}
-
         </ul>
     {% endif %}
 </li>

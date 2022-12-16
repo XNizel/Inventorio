@@ -1,0 +1,15 @@
+{% extends 'inventaire/base.html' %}
+
+{% block content %}
+
+    <h1>Créer un nouveau conteuneur</h1>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Valider">
+    </form>
+
+    <a href="{% url 'liste-tree' %}">Annuler</a>
+
+{% endblock %}

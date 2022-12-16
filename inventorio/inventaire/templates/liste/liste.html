@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h1>Liste</h1>
+    <h1>Liste</h1>
 
-<h2>{{ conteneurs.name }}</h2>
+    <a href="{% url 'conteneur-add' %}">Ajouter un nouveau conteneur</a>
 
-<ul>
-    {% if conteneurs.get_child %}
-        {% include 'liste/tree_view.html' %}
-    {% endif %}
-</ul>
+    <ul>
+        {% if conteneur.get_child %}
+            {% include 'liste/tree_view.html' %}
+        {% endif %}
+    </ul>
 
 
 {% endblock %}

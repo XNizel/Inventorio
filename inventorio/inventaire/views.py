@@ -4,24 +4,66 @@ from django.http import HttpResponse
 from inventaire.models import Conteneur
 from inventaire.models import Categorie
 
-from inventaire.forms import CategorieForm
+from inventaire.forms import CategorieForm, ConteneurForm
 
 
 # Create your views here.
 
 def liste(request):
     conteneurs = Conteneur.objects.all()
-    conteneurs = conteneurs[0]  # root
+    conteneur = conteneurs[0]  # root
     return render(request,
                   'liste/liste.html',
-                  {'conteneurs': conteneurs})
+                  {'conteneur': conteneur})
 
 
 def conteneur_detail(request, id):
     conteneur = Conteneur.objects.get(id=id)
-    print(conteneur.id)
     return render(request,
                   'liste/conteneur_detail.html',
+                  {'conteneur': conteneur})
+
+
+def conteneur_add(request):
+    if request.method == 'POST':
+        form = ConteneurForm(request.POST)
+        if form.is_valid():
+            conteneur = form.save()
+            return redirect('conteneur-detail', conteneur.id)
+    else:
+        form = ConteneurForm()
+
+    return render(request,
+                  'liste/conteneur_add.html',
+                  {'form': form})
+
+
+def conteneur_update(request, id):
+    conteneur = Conteneur.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = ConteneurForm(request.POST, instance=conteneur)
+        if form.is_valid():
+            form.save()
+            return redirect('conteneur-detail', conteneur.id)
+
+    else:
+        form = ConteneurForm(instance=conteneur)
+
+    return render(request,
+                  'liste/conteneur_update.html',
+                  {'conteneur': conteneur, 'form': form})
+
+
+def conteneur_delete(request, id):
+    conteneur = Conteneur.objects.get(id=id)
+
+    if request.method == 'POST':
+        conteneur.delete()
+        return redirect('liste-tree')
+
+    return render(request,
+                  'liste/conteneur_delete.html',
                   {'conteneur': conteneur})
 
 
@@ -56,9 +98,10 @@ def categorie_add(request):
 def categorie_update(request, id):
     categorie = Categorie.objects.get(id=id)
     form = CategorieForm(instance=categorie)
+    args = {'cat': categorie, 'form': form}
     return render(request,
                   'categorie/categorie_update.html',
-                  {'form': form})
+                  {'categorie': categorie, 'form': form})
 
 
 def categorie_delete(request, id):

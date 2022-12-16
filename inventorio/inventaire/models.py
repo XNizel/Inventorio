@@ -17,7 +17,8 @@ class Conteneur(models.Model):
     categorie = models.ForeignKey('Categorie',
                                   null=True,
                                   blank=True,
-                                  on_delete=models.SET_NULL,
+                                  default=None,
+                                  on_delete=models.SET_DEFAULT,
                                   related_name='conteneur')
     parent = models.ForeignKey('self',
                                null=True,
@@ -28,6 +29,9 @@ class Conteneur(models.Model):
 
     def set_parent(self, parent):
         self.parent = parent
+
+    def get_first_child(self):
+        return self.child.get(id=0)
 
     def get_child(self):
         return self.child.all()
