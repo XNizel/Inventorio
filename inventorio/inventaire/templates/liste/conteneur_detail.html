@@ -4,21 +4,28 @@
 
     <h1>Details du conteneur {{ conteneur.name }}</h1>
 
+    <a href="{% url 'liste-tree' %}">Retour a la liste</a>
+
+    <a href="{% url 'conteneur-update' conteneur.id %}">Modifier le conteneur</a>
+    <a href="{% url 'conteneur-delete' conteneur.id %}">Supprimer le conteneur</a>
     <ul>
         <li>ID: {{ conteneur.id }}</li>
-        <li>Parent: <a href="{% url 'conteneur-detail' conteneur.parent.id %}"> {{ conteneur.parent }}</a></li>
+        {% if conteneur.parent %}
+            <li>Parent: <a href="{% url 'conteneur-detail' conteneur.parent.id %}"> {{ conteneur.parent }}</a></li>
+        {% else %}
+            <li>Root</li>
+        {% endif %}
         <li>Nom: {{ conteneur.name }}</li>
         <li>Catégorie: {{ conteneur.categorie }}</li>
         <li>Description: {{ conteneur.description }}</li>
         <li>Enfants: </li>
+        {% if conteneur.get_child %}
+            {% include 'liste/tree_view/start_tree_view.html' %}
+        {% endif %}
 
 
 
     </ul>
-
-    <a href="{% url 'liste-tree' %}">Retour a la liste</a>
-    <a href="{% url 'conteneur-update' conteneur.id %}">Modifier le conteneur</a>
-    <a href="{% url 'conteneur-delete' conteneur.id %}">Supprimer le conteneur</a>
 
 
 {% endblock %}

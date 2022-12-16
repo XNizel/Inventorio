@@ -11,17 +11,25 @@ from inventaire.forms import CategorieForm, ConteneurForm
 
 def liste(request):
     conteneurs = Conteneur.objects.all()
-    conteneur = conteneurs[0]  # root
+    for conteneur in conteneurs:
+        if not conteneur.parent:    # Le root est celui qui n'a pas de parent
+            return render(request,
+                          'liste/liste.html',
+                          {'root': conteneur,
+                           'include_root': True})
+
     return render(request,
-                  'liste/liste.html',
-                  {'conteneur': conteneur})
+                  'liste/liste_vide.html')
 
 
 def conteneur_detail(request, id):
     conteneur = Conteneur.objects.get(id=id)
+    start_tree_child = conteneur.get_first_child()
     return render(request,
                   'liste/conteneur_detail.html',
-                  {'conteneur': conteneur})
+                  {'conteneur': conteneur,
+                   'root': conteneur,
+                   'include_root': False})
 
 
 def conteneur_add(request):

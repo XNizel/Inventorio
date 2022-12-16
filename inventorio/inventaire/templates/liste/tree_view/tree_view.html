@@ -1,0 +1,12 @@
+<li>
+    <a href="{% url 'conteneur-detail' root.id %}">{{ root.name }}</a>
+    {% if root.get_child %}
+        <ul>
+            {% for child in root.get_child %}
+                {% with root=child template_name='liste/tree_view/tree_view.html' %}
+                    {% include template_name %}
+                {% endwith %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

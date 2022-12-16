@@ -2,13 +2,8 @@
 
 {% block content %}
 
-    <h1>Liste</h1>
+    <h1>La liste est vide</h1>
 
     <a href="{% url 'conteneur-add' %}">Ajouter un nouveau conteneur</a>
-
-    {% if root.get_child %}
-        {% include 'liste/tree_view/start_tree_view.html' %}
-    {% endif %}
-
 
 {% endblock %}

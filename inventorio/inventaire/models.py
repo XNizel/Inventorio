@@ -31,7 +31,7 @@ class Conteneur(models.Model):
         self.parent = parent
 
     def get_first_child(self):
-        return self.child.get(id=0)
+        return self.child.first()
 
     def get_child(self):
         return self.child.all()
