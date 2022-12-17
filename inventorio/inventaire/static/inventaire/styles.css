@@ -1,3 +1,53 @@
 body {
-  background-color: lightblue;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  display: flex;
+
+}
+
+nav {
+  margin-right: 10px;
+  background-color: #CCE1FF;
+  width: 225px;
+}
+
+#nav_header {
+  margin-top: 25px;
+  display: block;
+  text-align: center;
+}
+
+#nav_logo {
+  width: 50px;
+  height: 50px;
+}
+
+#nav_title {  /* chercher l'origine de l'espacement */
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+  font-family: system-ui;
+}
+
+#navlink  {
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  font-family: system-ui;
+  font-size: 1.2em;
+}
+
+#navlink a {
+  margin-bottom: 10px;
+  padding: 5px;
+  color: black;
+}
+#navlink a:hover {
+  background-color: #80B5FF;
+  border-radius: 5px;
+}
+
+nav h1, nav a , nav img{
+  /*background-color: red;*/
 }

@@ -6,11 +6,30 @@
         <link rel="stylesheet" href="{% static 'inventaire/styles.css' %}" />
     </head>
     <body>
-    <nav>
-        <a href="{% url 'liste-tree' %}">Liste</a>
-        <a href="{% url 'categorie-list' %}">Catégories</a>
-    </nav>
+        <nav>
+            <div id="nav_header">
+                {% load static %}
+                <img src="{% static 'inventaire/images/logo.png' %}" alt="Logo" id="nav_logo">
+                <h1 id="nav_title">Inventorio</h1>
+            </div>
 
-        {% block content %}{% endblock %}
+
+            <div id="navlink">
+                <a href="{% url 'liste-tree' %}">Liste</a>
+                <a href="{% url 'categorie-list' %}">Catégories</a>
+                <a href="">Aide</a>
+            </div>
+
+        </nav>
+
+
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+
+
+
+
+
     </body>
 </html>
